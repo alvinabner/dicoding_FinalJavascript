@@ -2,7 +2,7 @@ const BOOK_UNCOMPLETE = 'incompleteBookshelfList';
 const BOOK_COMPLETE = 'completeBookshelfList';
 const BOOK_ID = 'bookId';
 
-function makeBook(title, author, year, isComplete) {
+function makeBook(title, author, year, isCompleted) {
     const bookTitle = document.createElement('h3');
     bookTitle.classList.add('class-title');
     bookTitle.innerHTML = title;
@@ -23,7 +23,7 @@ function makeBook(title, author, year, isComplete) {
     textContainer.append(bookTitle, bookAuthor, bookYear);
     textContainer.append(buttonContainer);
     
-    if (isComplete) {
+    if (isCompleted) {
         buttonContainer.append(createUncompleteButton(), createDeleteButton());
     } else {
         buttonContainer.append(createCompleteButton(), createDeleteButton());
@@ -104,7 +104,7 @@ function addBookComplete(bookElement) {
     const newBook = makeBook(bookTitleElement, bookAuthorElement, bookYearElement, true);
 
     const bookName = findBook(bookElement[BOOK_ID]);
-    bookName.isComplete = true;
+    bookName.isCompleted = true;
     
     newBook[BOOK_ID] = bookName.id;
     listCompleted.append(newBook);
@@ -123,7 +123,7 @@ function undoBookCompleted(bookElement) {
     const newBook = makeBook(bookTitleElement, bookAuthorElement, bookYearElement, false);
 
     const bookName = findBook(bookElement[BOOK_ID]);
-    bookName.isComplete = false;
+    bookName.isCompleted = false;
     
     newBook[BOOK_ID] = bookName.id;
     listUncompleted.append(newBook);
